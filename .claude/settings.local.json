@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd C:/devl && npx @angular/cli@21 new rateat --minimal --skip-git --style=scss --routing=false 2>&1)",
+      "Bash(gh auth:*)"
+    ]
+  }
+}
