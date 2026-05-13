@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { RestaurantStore } from '../store/restaurant.store';
-import { AuthStore } from '../../../core/auth';
-import { ButtonComponent, RatingDisplayComponent } from '../../../shared/ui';
+import { RestaurantStore } from '../../store/restaurant.store';
+import { AuthStore } from '../../../../core/auth';
+import { ButtonComponent, RatingDisplayComponent } from '../../../../shared/ui';
 
 type RestaurantFilter = 'all' | 'mine' | 'shared';
 

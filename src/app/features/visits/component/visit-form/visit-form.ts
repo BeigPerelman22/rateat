@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@ang
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
-import { VisitStore } from '../store/visit.store';
-import { ButtonComponent, RatingInputComponent } from '../../../shared/ui';
+import { VisitStore } from '../../store/visit.store';
+import { ButtonComponent, RatingInputComponent } from '../../../../shared/ui';
 
 @Component({
   selector: 'app-visit-form',

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { NavComponent } from './nav';
+import { NavComponent } from '../nav/nav';
 
 @Component({
   selector: 'app-shell',

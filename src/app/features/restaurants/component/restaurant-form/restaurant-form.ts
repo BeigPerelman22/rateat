@@ -2,10 +2,10 @@ import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@ang
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
-import { RestaurantStore } from '../store/restaurant.store';
-import { PartnerStore } from '../../partners';
-import { ButtonComponent } from '../../../shared/ui';
-import { Restaurant } from '../model/restaurant.model';
+import { RestaurantStore } from '../../store/restaurant.store';
+import { PartnerStore } from '../../../partners';
+import { ButtonComponent } from '../../../../shared/ui';
+import { Restaurant } from '../../model/restaurant.model';
 
 @Component({
   selector: 'app-restaurant-form',

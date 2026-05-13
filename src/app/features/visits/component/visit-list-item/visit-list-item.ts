@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { RatingDisplayComponent } from '../../../shared/ui';
-import { Visit } from '../model/visit.model';
+import { RatingDisplayComponent } from '../../../../shared/ui';
+import { Visit } from '../../model/visit.model';
 
 @Component({
   selector: 'app-visit-list-item',
