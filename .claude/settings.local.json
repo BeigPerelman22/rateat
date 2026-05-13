@@ -28,7 +28,11 @@
       "Bash(mv visit-form.ts visit-form/)",
       "Bash(mv visit-form.html visit-form/)",
       "Bash(mv visit-form.scss visit-form/)",
-      "Bash(mv visit-list-item.ts visit-list-item/)"
+      "Bash(mv visit-list-item.ts visit-list-item/)",
+      "Bash(git add *)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(curl -s http://localhost:4200)",
+      "Bash(git push *)"
     ]
   }
 }

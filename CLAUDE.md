@@ -33,48 +33,46 @@ src/
         index.ts
       layout/                 # App shell (each component in its own folder)
         nav/                  # Navigation component
-          nav.ts, nav.html, nav.scss, index.ts
+          nav.ts, nav.html, nav.scss
         shell/                # Shell component
-          shell.ts, shell.html, shell.scss, index.ts
-        index.ts
+          shell.ts, shell.html, shell.scss
+        index.ts              # Public API barrel
     features/                 # Feature modules (restaurants, visits, partners, etc.)
       restaurants/
-        component/            # Feature components (each in its own folder)
+        component/            # Feature components (each in its own folder, no barrels)
           restaurant-list/
-            restaurant-list.ts, restaurant-list.html, restaurant-list.scss, index.ts
+            restaurant-list.ts, restaurant-list.html, restaurant-list.scss
           restaurant-detail/
-            restaurant-detail.ts, restaurant-detail.html, restaurant-detail.scss, index.ts
+            restaurant-detail.ts, restaurant-detail.html, restaurant-detail.scss
           restaurant-form/
-            restaurant-form.ts, restaurant-form.html, restaurant-form.scss, index.ts
-          index.ts
+            restaurant-form.ts, restaurant-form.html, restaurant-form.scss
         service/restaurant.service.ts
         store/restaurant.store.ts
         model/restaurant.model.ts
         routes.ts
-        index.ts
+        index.ts              # Public API barrel
       visits/
-        component/            # Each component in its own folder
+        component/            # Each component in its own folder, no barrels
           visit-form/
-            visit-form.ts, visit-form.html, visit-form.scss, index.ts
+            visit-form.ts, visit-form.html, visit-form.scss
           visit-list-item/
-            visit-list-item.ts, visit-list-item.html, visit-list-item.scss, index.ts
-          index.ts
+            visit-list-item.ts, visit-list-item.html, visit-list-item.scss
         service/visit.service.ts
         store/visit.store.ts
         model/visit.model.ts
         routes.ts
-        index.ts
+        index.ts              # Public API barrel
     shared/
       ui/                     # Shared UI components
-        button/               # Each component in its own folder
-          button.ts, button.html, button.scss, index.ts
+        button/               # Each component in its own folder, no barrels
+          button.ts, button.html, button.scss
         card/
-          card.ts, card.html, card.scss, index.ts
+          card.ts, card.html, card.scss
         rating-display/
-          rating-display.ts, rating-display.html, rating-display.scss, index.ts
+          rating-display.ts, rating-display.html, rating-display.scss
         rating-input/
-          rating-input.ts, rating-input.html, rating-input.scss, index.ts
-        index.ts              # Barrel export
+          rating-input.ts, rating-input.html, rating-input.scss
+        index.ts              # Public API barrel (direct imports, no nested barrels)
   main.ts                     # Bootstrap entry point
   styles.scss                 # Global styles
   index.html                  # HTML shell
@@ -91,41 +89,5 @@ public/                       # Static assets
 - UI components (shared/ui) must each have their own folder: `button/`, `card/`, `rating-display/`, etc.
 - All components use OnPush change detection
 - API calls through services, never directly in components
-- Barrel exports (index.ts) for every folder: feature folders, component folders, and ui components
+- Use barrel exports (`index.ts`) only for public APIs and module boundaries (`shared/`, `features/<feature>/`, libraries), avoid barrels for internal/local components or deep nested folders, prefer direct imports for internal implementation, and avoid nested barrels/circular dependencies.
 - Use informative, descriptive variable names that convey intent and purpose (avoid single-letter or vague names like `data`, `tmp`, `x`)
-
-## Barrel Exports (`index.ts`)
-
-**Allowed locations** (public APIs only):
-- `shared/` — Exports shared utilities and components
-- `features/<feature>/` — Exports feature public API
-- Library/module public API boundaries
-
-**Do NOT create barrels for:**
-- Individual component folders (internal implementation)
-- Deep nested internal folders
-- Every folder by default
-
-**Examples:**
-```ts
-// ✓ ALLOWED: shared/ui/index.ts (public API)
-export * from './button/button';
-export * from './card/card';
-export * from './rating-input/rating-input';
-export * from './rating-display/rating-display';
-
-// ✓ ALLOWED: features/restaurants/index.ts (feature public API)
-export * from './routes';
-export { RestaurantService } from './service/restaurant.service';
-
-// ✗ NOT ALLOWED: features/restaurants/component/index.ts
-// This is internal implementation — use direct imports instead
-
-// ✓ PREFERRED: Direct import for internal code
-import { RestaurantListComponent } from './component/restaurant-list/restaurant-list';
-
-// ✗ AVOID: Importing from internal barrel
-import { RestaurantListComponent } from './component';
-```
-
-**Rule of thumb:** Treat barrels as public APIs only. Internal implementation code should use direct imports.
