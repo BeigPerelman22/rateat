@@ -1,0 +1,52 @@
+<div class="space-y-6">
+  <header>
+    <h1 class="text-2xl font-semibold tracking-tight">Partners</h1>
+    <p class="mt-1 text-sm text-neutral-500">
+      Invite the people you share food adventures with. Once linked, you can
+      choose which restaurants to share with them.
+    </p>
+  </header>
+
+  <app-card>
+    <form (ngSubmit)="addPartner()" class="flex flex-col gap-3 sm:flex-row">
+      <input
+        type="email"
+        required
+        placeholder="partner@example.com"
+        [(ngModel)]="emailInput"
+        name="email"
+        class="flex-1 rounded-lg border border-neutral-200 bg-white px-3 py-2 text-sm focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200"
+      />
+      <app-button type="submit" [disabled]="isSubmitting()">
+        @if (isSubmitting()) { Adding… } @else { Add partner }
+      </app-button>
+    </form>
+    @if (statusMessage()) {
+      <p class="mt-3 text-sm" [class.text-red-600]="isErrorMessage()" [class.text-emerald-600]="!isErrorMessage()">
+        {{ statusMessage() }}
+      </p>
+    }
+  </app-card>
+
+  <section>
+    <h2 class="mb-2 text-sm font-semibold uppercase tracking-wide text-neutral-500">
+      Linked partners
+    </h2>
+
+    @if (partnerStore.list().length === 0) {
+      <p class="text-sm text-neutral-500">You haven't added any partners yet.</p>
+    } @else {
+      <ul class="space-y-2">
+        @for (linkedPartner of partnerStore.list(); track linkedPartner.uid) {
+          <li class="flex items-center justify-between rounded-lg border border-neutral-200 bg-white px-4 py-3">
+            <div>
+              <div class="font-medium text-neutral-900">{{ linkedPartner.displayName }}</div>
+              <div class="text-xs text-neutral-500">{{ linkedPartner.email }}</div>
+            </div>
+            <app-button variant="ghost" (click)="removePartner(linkedPartner)">Remove</app-button>
+          </li>
+        }
+      </ul>
+    }
+  </section>
+</div>

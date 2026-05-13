@@ -2,7 +2,27 @@
   "permissions": {
     "allow": [
       "Bash(cd C:/devl && npx @angular/cli@21 new rateat --minimal --skip-git --style=scss --routing=false 2>&1)",
-      "Bash(gh auth:*)"
+      "Bash(gh auth:*)",
+      "Bash(cd C:/devl/rateat && gh repo create rateat --public --source=. --remote=origin --push 2>&1)",
+      "Bash(firebase --version)",
+      "Bash(npm install *)",
+      "Bash(firebase login *)",
+      "Bash(firebase use *)",
+      "Bash(firebase deploy *)",
+      "Bash(npm ls *)",
+      "Bash(npm run *)",
+      "Bash(grep -E '\\\\.\\(ts|html|scss\\)$')",
+      "Bash(mv button.ts button/)",
+      "Bash(mv button.html button/)",
+      "Bash(mv button.scss button/)",
+      "Bash(mv card.ts card/)",
+      "Bash(mv card.html card/)",
+      "Bash(find /c/devl/rateat/src -type d -name \"ui\" -exec sh -c 'echo \"Files in {}: $\\(find \"{}\" -maxdepth 1 -type f -o -type d | wc -l\\)\"' \\\\;)",
+      "Bash(mkdir -p restaurant-list restaurant-detail restaurant-form)",
+      "Bash(mv restaurant-list.ts restaurant-list/)",
+      "Bash(mv restaurant-list.html restaurant-list/)",
+      "Bash(mv restaurant-list.scss restaurant-list/)",
+      "Bash(mv restaurant-detail.ts restaurant-detail/)"
     ]
   }
 }

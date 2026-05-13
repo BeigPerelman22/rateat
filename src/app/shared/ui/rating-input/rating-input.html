@@ -1,0 +1,19 @@
+<div class="inline-flex items-center gap-0.5" role="radiogroup" [attr.aria-label]="label()">
+  @for (starNumber of starOptions; track starNumber) {
+    <button
+      type="button"
+      role="radio"
+      [attr.aria-label]="starNumber + ' stars'"
+      [attr.aria-checked]="starNumber === selectedValue()"
+      [disabled]="isDisabled()"
+      (click)="selectRating(starNumber)"
+      (mouseenter)="hoveredValue.set(starNumber)"
+      (mouseleave)="hoveredValue.set(0)"
+      class="p-0.5 text-2xl leading-none transition disabled:cursor-not-allowed"
+      [class.text-amber-400]="starNumber <= displayedValue()"
+      [class.text-neutral-300]="starNumber > displayedValue()"
+    >
+      ★
+    </button>
+  }
+</div>

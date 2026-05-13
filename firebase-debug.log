@@ -1,0 +1,113 @@
+[debug] [2026-04-24T07:47:07.174Z] ----------------------------------------------------------------------
+[debug] [2026-04-24T07:47:07.177Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\beral\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only firestore:rules,firestore:indexes
+[debug] [2026-04-24T07:47:07.178Z] CLI Version:   15.15.0
+[debug] [2026-04-24T07:47:07.178Z] Platform:      win32
+[debug] [2026-04-24T07:47:07.178Z] Node Version:  v22.13.1
+[debug] [2026-04-24T07:47:07.178Z] Time:          Fri Apr 24 2026 10:47:07 GMT+0300 (Eastern European Summer Time)
+[debug] [2026-04-24T07:47:07.178Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-04-24T07:47:09.453Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-04-24T07:47:09.454Z] > authorizing via signed-in user (berale6p@gmail.com)
+[debug] [2026-04-24T07:47:09.454Z] [iam] checking project rateat-9be82 for permissions ["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get"]
+[debug] [2026-04-24T07:47:09.456Z] Checked if tokens are valid: true, expires at: 1777020338462
+[debug] [2026-04-24T07:47:09.456Z] Checked if tokens are valid: true, expires at: 1777020338462
+[debug] [2026-04-24T07:47:09.457Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/rateat-9be82:testIamPermissions [none]
+[debug] [2026-04-24T07:47:09.457Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/rateat-9be82:testIamPermissions  x-goog-user-project=rateat-9be82
+[debug] [2026-04-24T07:47:09.457Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/rateat-9be82:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get"]}
+[debug] [2026-04-24T07:47:20.607Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/rateat-9be82:testIamPermissions 200
+[debug] [2026-04-24T07:47:20.608Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/rateat-9be82:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get"]}
+[info] 
+[info] === Deploying to 'rateat-9be82'...
+[info] 
+[info] i  deploying firestore 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[debug] [2026-04-24T07:47:20.616Z] Checked if tokens are valid: true, expires at: 1777020338462
+[debug] [2026-04-24T07:47:20.616Z] Checked if tokens are valid: true, expires at: 1777020338462
+[debug] [2026-04-24T07:47:20.616Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/rateat-9be82/services/firestore.googleapis.com [none]
+[debug] [2026-04-24T07:47:20.616Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/rateat-9be82/services/firestore.googleapis.com  x-goog-user-project=rateat-9be82
+[debug] [2026-04-24T07:47:21.759Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/rateat-9be82/services/firestore.googleapis.com 200
+[debug] [2026-04-24T07:47:21.759Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/rateat-9be82/services/firestore.googleapis.com [omitted]
+[info] +  firestore: required API firestore.googleapis.com is enabled 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[debug] [2026-04-24T07:47:21.776Z] Checked if tokens are valid: true, expires at: 1777020338462
+[debug] [2026-04-24T07:47:21.776Z] Checked if tokens are valid: true, expires at: 1777020338462
+[debug] [2026-04-24T07:47:21.776Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/rateat-9be82/databases/(default) [none]
+[debug] [2026-04-24T07:47:22.878Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/rateat-9be82/databases/(default) 200
+[debug] [2026-04-24T07:47:22.878Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/rateat-9be82/databases/(default) {"name":"projects/rateat-9be82/databases/(default)","uid":"cae97246-f608-470b-9bf6-4a488e31c706","createTime":"2026-04-24T07:30:54.060551Z","updateTime":"2026-04-24T07:30:54.060551Z","locationId":"nam5","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2026-04-24T07:30:54.060551Z","appEngineIntegrationMode":"DISABLED","keyPrefix":"s","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"realtimeUpdatesMode":"REALTIME_UPDATES_MODE_ENABLED","etag":"IMvuns7/hZQDMKb5hfn7hZQD"}
+[info] i  firestore: reading indexes from firestore.indexes.json... 
+[info] i  cloud.firestore: checking firestore.rules for compilation errors... 
+[debug] [2026-04-24T07:47:22.881Z] Checked if tokens are valid: true, expires at: 1777020338462
+[debug] [2026-04-24T07:47:22.881Z] Checked if tokens are valid: true, expires at: 1777020338462
+[debug] [2026-04-24T07:47:22.881Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/rateat-9be82:test [none]
+[debug] [2026-04-24T07:47:22.881Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/rateat-9be82:test [omitted]
+[debug] [2026-04-24T07:47:23.769Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/rateat-9be82:test 200
+[debug] [2026-04-24T07:47:23.770Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/rateat-9be82:test {}
+[info] +  cloud.firestore: rules file firestore.rules compiled successfully 
+[debug] [2026-04-24T07:47:23.772Z] Checked if tokens are valid: true, expires at: 1777020338462
+[debug] [2026-04-24T07:47:23.772Z] Checked if tokens are valid: true, expires at: 1777020338462
+[debug] [2026-04-24T07:47:23.773Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/rateat-9be82/releases pageSize=10&pageToken=
+[debug] [2026-04-24T07:47:24.543Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/rateat-9be82/releases 200
+[debug] [2026-04-24T07:47:24.543Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/rateat-9be82/releases {"releases":[{"name":"projects/rateat-9be82/releases/cloud.firestore","rulesetName":"projects/rateat-9be82/rulesets/e9ebc50a-3a0c-4950-8da9-9c69334e4ac3","createTime":"2026-04-24T07:30:55.717543Z","updateTime":"2026-04-24T07:30:55.717543Z"}]}
+[debug] [2026-04-24T07:47:24.543Z] Checked if tokens are valid: true, expires at: 1777020338462
+[debug] [2026-04-24T07:47:24.543Z] Checked if tokens are valid: true, expires at: 1777020338462
+[debug] [2026-04-24T07:47:24.543Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/rateat-9be82/rulesets/e9ebc50a-3a0c-4950-8da9-9c69334e4ac3 [none]
+[debug] [2026-04-24T07:47:24.774Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/rateat-9be82/rulesets/e9ebc50a-3a0c-4950-8da9-9c69334e4ac3 200
+[debug] [2026-04-24T07:47:24.775Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/rateat-9be82/rulesets/e9ebc50a-3a0c-4950-8da9-9c69334e4ac3 [omitted]
+[info] i  firestore: uploading rules firestore.rules... 
+[debug] [2026-04-24T07:47:24.776Z] Checked if tokens are valid: true, expires at: 1777020338462
+[debug] [2026-04-24T07:47:24.776Z] Checked if tokens are valid: true, expires at: 1777020338462
+[debug] [2026-04-24T07:47:24.776Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/rateat-9be82/rulesets [none]
+[debug] [2026-04-24T07:47:24.776Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/rateat-9be82/rulesets [omitted]
+[debug] [2026-04-24T07:47:25.146Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/rateat-9be82/rulesets 200
+[debug] [2026-04-24T07:47:25.146Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/rateat-9be82/rulesets {"name":"projects/rateat-9be82/rulesets/12e4666d-1621-41ac-a4dd-04fc61585f26","source":{"files":[{"content":"rules_version = '2';\n\nservice cloud.firestore {\n  match /databases/{database}/documents {\n\n    match /users/{uid} {\n      allow read: if request.auth != null;\n      allow create: if request.auth.uid == uid;\n      allow update: if request.auth != null && (\n        request.auth.uid == uid ||\n        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['partners'])\n      );\n      allow delete: if request.auth.uid == uid;\n    }\n\n    match /restaurants/{id} {\n      allow read: if request.auth != null\n                  && request.auth.uid in resource.data.memberIds;\n      allow create: if request.auth != null\n                    && request.auth.uid == request.resource.data.ownerId\n                    && request.auth.uid in request.resource.data.memberIds;\n      allow update, delete: if request.auth != null\n                            && request.auth.uid == resource.data.ownerId;\n    }\n\n    match /visits/{id} {\n      allow read: if request.auth != null\n                  && request.auth.uid in resource.data.memberIds;\n      allow create: if request.auth != null\n                    && request.auth.uid == request.resource.data.ownerId;\n      allow update, delete: if request.auth != null\n                            && request.auth.uid == resource.data.ownerId;\n    }\n  }\n}\n","name":"firestore.rules"}]},"createTime":"2026-04-24T07:47:26.809535Z","metadata":{"services":["cloud.firestore"]}}
+[debug] [2026-04-24T07:47:25.147Z] [rules] created ruleset projects/rateat-9be82/rulesets/12e4666d-1621-41ac-a4dd-04fc61585f26
+[info] i  firestore: deploying indexes... 
+[debug] [2026-04-24T07:47:25.150Z] Checked if tokens are valid: true, expires at: 1777020338462
+[debug] [2026-04-24T07:47:25.151Z] Checked if tokens are valid: true, expires at: 1777020338462
+[debug] [2026-04-24T07:47:25.151Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/rateat-9be82/databases/(default)/collectionGroups/-/indexes [none]
+[debug] [2026-04-24T07:47:25.402Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/rateat-9be82/databases/(default)/collectionGroups/-/indexes 200
+[debug] [2026-04-24T07:47:25.403Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/rateat-9be82/databases/(default)/collectionGroups/-/indexes {}
+[debug] [2026-04-24T07:47:25.404Z] Checked if tokens are valid: true, expires at: 1777020338462
+[debug] [2026-04-24T07:47:25.404Z] Checked if tokens are valid: true, expires at: 1777020338462
+[debug] [2026-04-24T07:47:25.404Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/rateat-9be82/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* [none]
+[debug] [2026-04-24T07:47:25.790Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/rateat-9be82/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* 200
+[debug] [2026-04-24T07:47:25.791Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/rateat-9be82/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* {"fields":[{"name":"projects/rateat-9be82/databases/(default)/collectionGroups/__default__/fields/*","indexConfig":{"indexes":[{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"ASCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"DESCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","arrayConfig":"CONTAINS"}],"state":"READY"}]}}]}
+[debug] [2026-04-24T07:47:25.791Z] Checked if tokens are valid: true, expires at: 1777020338462
+[debug] [2026-04-24T07:47:25.791Z] Checked if tokens are valid: true, expires at: 1777020338462
+[debug] [2026-04-24T07:47:25.791Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/rateat-9be82/databases/(default) [none]
+[debug] [2026-04-24T07:47:25.976Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/rateat-9be82/databases/(default) 200
+[debug] [2026-04-24T07:47:25.976Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/rateat-9be82/databases/(default) {"name":"projects/rateat-9be82/databases/(default)","uid":"cae97246-f608-470b-9bf6-4a488e31c706","createTime":"2026-04-24T07:30:54.060551Z","updateTime":"2026-04-24T07:30:54.060551Z","locationId":"nam5","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2026-04-24T07:30:54.060551Z","appEngineIntegrationMode":"DISABLED","keyPrefix":"s","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"realtimeUpdatesMode":"REALTIME_UPDATES_MODE_ENABLED","etag":"IIyM3M//hZQDMKa+zs//hZQD"}
+[debug] [2026-04-24T07:47:25.976Z] Creating new index: {"collectionGroup":"restaurants","queryScope":"COLLECTION","fields":[{"fieldPath":"memberIds","arrayConfig":"CONTAINS"},{"fieldPath":"updatedAt","order":"DESCENDING"}]}
+[debug] [2026-04-24T07:47:25.977Z] Checked if tokens are valid: true, expires at: 1777020338462
+[debug] [2026-04-24T07:47:25.977Z] Checked if tokens are valid: true, expires at: 1777020338462
+[debug] [2026-04-24T07:47:25.978Z] >>> [apiv2][query] POST https://firestore.googleapis.com/v1/projects/rateat-9be82/databases/(default)/collectionGroups/restaurants/indexes [none]
+[debug] [2026-04-24T07:47:25.978Z] >>> [apiv2][body] POST https://firestore.googleapis.com/v1/projects/rateat-9be82/databases/(default)/collectionGroups/restaurants/indexes {"fields":[{"fieldPath":"memberIds","arrayConfig":"CONTAINS"},{"fieldPath":"updatedAt","order":"DESCENDING"}],"queryScope":"COLLECTION"}
+[debug] [2026-04-24T07:47:26.480Z] <<< [apiv2][status] POST https://firestore.googleapis.com/v1/projects/rateat-9be82/databases/(default)/collectionGroups/restaurants/indexes 200
+[debug] [2026-04-24T07:47:26.480Z] <<< [apiv2][body] POST https://firestore.googleapis.com/v1/projects/rateat-9be82/databases/(default)/collectionGroups/restaurants/indexes {"name":"projects/rateat-9be82/databases/(default)/operations/S0U0aFhqT2dBQ0lDDCoDIDc4Zjg0MmVhMmQwMC1kOWRhLTg4NzQtYzllNi1iNjY0YWZjZiQac2VuaWxlcGlwCQpBEg","metadata":{"@type":"type.googleapis.com/google.firestore.admin.v1.IndexOperationMetadata","startTime":"2026-04-24T07:47:28.109234Z","index":"projects/rateat-9be82/databases/(default)/collectionGroups/restaurants/indexes/CICAgOjXh4EK","state":"INITIALIZING"}}
+[debug] [2026-04-24T07:47:26.481Z] Creating new index: {"collectionGroup":"visits","queryScope":"COLLECTION","fields":[{"fieldPath":"restaurantId","order":"ASCENDING"},{"fieldPath":"visitedAt","order":"DESCENDING"}]}
+[debug] [2026-04-24T07:47:26.481Z] Checked if tokens are valid: true, expires at: 1777020338462
+[debug] [2026-04-24T07:47:26.481Z] Checked if tokens are valid: true, expires at: 1777020338462
+[debug] [2026-04-24T07:47:26.481Z] >>> [apiv2][query] POST https://firestore.googleapis.com/v1/projects/rateat-9be82/databases/(default)/collectionGroups/visits/indexes [none]
+[debug] [2026-04-24T07:47:26.481Z] >>> [apiv2][body] POST https://firestore.googleapis.com/v1/projects/rateat-9be82/databases/(default)/collectionGroups/visits/indexes {"fields":[{"fieldPath":"restaurantId","order":"ASCENDING"},{"fieldPath":"visitedAt","order":"DESCENDING"}],"queryScope":"COLLECTION"}
+[debug] [2026-04-24T07:47:26.807Z] <<< [apiv2][status] POST https://firestore.googleapis.com/v1/projects/rateat-9be82/databases/(default)/collectionGroups/visits/indexes 200
+[debug] [2026-04-24T07:47:26.807Z] <<< [apiv2][body] POST https://firestore.googleapis.com/v1/projects/rateat-9be82/databases/(default)/collectionGroups/visits/indexes {"name":"projects/rateat-9be82/databases/(default)/operations/S01vcFVpSmdBQ0lDDCoDIDNmNzBmMGNlODA4NC02YWRiLTVmODQtMjY0ZC1kY2QzNzQyMiQac2VuaWxlcGlwCQpBEg","metadata":{"@type":"type.googleapis.com/google.firestore.admin.v1.IndexOperationMetadata","startTime":"2026-04-24T07:47:28.461245Z","index":"projects/rateat-9be82/databases/(default)/collectionGroups/visits/indexes/CICAgJiUpoMK","state":"INITIALIZING"}}
+[info] +  firestore: deployed indexes in firestore.indexes.json successfully for (default) database 
+[debug] [2026-04-24T07:47:26.807Z] [rules] releasing cloud.firestore/(default) with ruleset projects/rateat-9be82/rulesets/12e4666d-1621-41ac-a4dd-04fc61585f26
+[debug] [2026-04-24T07:47:26.808Z] Checked if tokens are valid: true, expires at: 1777020338462
+[debug] [2026-04-24T07:47:26.808Z] Checked if tokens are valid: true, expires at: 1777020338462
+[debug] [2026-04-24T07:47:26.808Z] >>> [apiv2][query] PATCH https://firebaserules.googleapis.com/v1/projects/rateat-9be82/releases/cloud.firestore/(default) [none]
+[debug] [2026-04-24T07:47:26.808Z] >>> [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/rateat-9be82/releases/cloud.firestore/(default) {"release":{"name":"projects/rateat-9be82/releases/cloud.firestore/(default)","rulesetName":"projects/rateat-9be82/rulesets/12e4666d-1621-41ac-a4dd-04fc61585f26"}}
+[debug] [2026-04-24T07:47:27.296Z] <<< [apiv2][status] PATCH https://firebaserules.googleapis.com/v1/projects/rateat-9be82/releases/cloud.firestore/(default) 200
+[debug] [2026-04-24T07:47:27.296Z] <<< [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/rateat-9be82/releases/cloud.firestore/(default) {"name":"projects/rateat-9be82/releases/cloud.firestore","rulesetName":"projects/rateat-9be82/rulesets/12e4666d-1621-41ac-a4dd-04fc61585f26","createTime":"2026-04-24T07:30:55.717543Z","updateTime":"2026-04-24T07:47:28.964182Z"}
+[debug] [2026-04-24T07:47:27.296Z] [rules] updated release projects/rateat-9be82/releases/cloud.firestore
+[info] +  firestore: released rules firestore.rules to cloud.firestore 
+[info] 
+[info] +  Deploy complete! 
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/rateat-9be82/overview
+[debug] [2026-04-24T07:47:37.319Z] Error: Timed out.
+    at Timeout._onTimeout (C:\Users\beral\AppData\Roaming\npm\node_modules\firebase-tools\lib\utils.js:309:49)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[error] 
+[error] Error: An unexpected error has occurred.

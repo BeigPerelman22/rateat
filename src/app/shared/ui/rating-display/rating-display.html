@@ -1,0 +1,7 @@
+<span class="inline-flex items-center gap-1" [attr.aria-label]="accessibilityLabel()">
+  <span class="text-amber-400">★</span>
+  <span class="font-medium tabular-nums">{{ formattedRating() }}</span>
+  @if (showMax()) {
+    <span class="text-neutral-400 text-sm">/ 5</span>
+  }
+</span>
