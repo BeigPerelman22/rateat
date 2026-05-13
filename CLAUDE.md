@@ -93,3 +93,39 @@ public/                       # Static assets
 - API calls through services, never directly in components
 - Barrel exports (index.ts) for every folder: feature folders, component folders, and ui components
 - Use informative, descriptive variable names that convey intent and purpose (avoid single-letter or vague names like `data`, `tmp`, `x`)
+
+## Barrel Exports (`index.ts`)
+
+**Allowed locations** (public APIs only):
+- `shared/` — Exports shared utilities and components
+- `features/<feature>/` — Exports feature public API
+- Library/module public API boundaries
+
+**Do NOT create barrels for:**
+- Individual component folders (internal implementation)
+- Deep nested internal folders
+- Every folder by default
+
+**Examples:**
+```ts
+// ✓ ALLOWED: shared/ui/index.ts (public API)
+export * from './button/button';
+export * from './card/card';
+export * from './rating-input/rating-input';
+export * from './rating-display/rating-display';
+
+// ✓ ALLOWED: features/restaurants/index.ts (feature public API)
+export * from './routes';
+export { RestaurantService } from './service/restaurant.service';
+
+// ✗ NOT ALLOWED: features/restaurants/component/index.ts
+// This is internal implementation — use direct imports instead
+
+// ✓ PREFERRED: Direct import for internal code
+import { RestaurantListComponent } from './component/restaurant-list/restaurant-list';
+
+// ✗ AVOID: Importing from internal barrel
+import { RestaurantListComponent } from './component';
+```
+
+**Rule of thumb:** Treat barrels as public APIs only. Internal implementation code should use direct imports.
