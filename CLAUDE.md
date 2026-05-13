@@ -31,7 +31,7 @@ src/
         auth.store.ts
         user.model.ts
         index.ts
-      layout/                 # App shell
+      layout/                 # App shell (each component in its own folder)
         nav/                  # Navigation component
           nav.ts, nav.html, nav.scss, index.ts
         shell/                # Shell component
@@ -39,7 +39,7 @@ src/
         index.ts
     features/                 # Feature modules (restaurants, visits, partners, etc.)
       restaurants/
-        component/            # Feature components
+        component/            # Feature components (each in its own folder)
           restaurant-list/
             restaurant-list.ts, restaurant-list.html, restaurant-list.scss, index.ts
           restaurant-detail/
@@ -50,6 +50,18 @@ src/
         service/restaurant.service.ts
         store/restaurant.store.ts
         model/restaurant.model.ts
+        routes.ts
+        index.ts
+      visits/
+        component/            # Each component in its own folder
+          visit-form/
+            visit-form.ts, visit-form.html, visit-form.scss, index.ts
+          visit-list-item/
+            visit-list-item.ts, visit-list-item.html, visit-list-item.scss, index.ts
+          index.ts
+        service/visit.service.ts
+        store/visit.store.ts
+        model/visit.model.ts
         routes.ts
         index.ts
     shared/
@@ -70,11 +82,12 @@ public/                       # Static assets
 ```
 
 ## Conventions
-- **Folder Organization**: Each folder should contain max 6-7 files. When a folder exceeds this limit, create subfolders for logical grouping (e.g., components in their own folders)
+- **Folder Organization**: Each folder should contain max 6-7 files
+- **Component Subfolders**: Always create individual subfolders for each component if a folder contains more than one component (e.g., if a folder has visit-form and visit-list-item, create `visit-form/` and `visit-list-item/` subfolders)
 - Components use the Angular 21 naming convention (`app.ts` instead of `app.component.ts`)
 - Styles written in SCSS
 - Feature-based folder structure: `feature-name/{component,service,store,model,routes}`
-- Each component in separate subfolders within feature/shared areas with individual files: `component-name.ts`, `component-name.html`, `component-name.scss`
+- Each component in separate subfolders with individual files: `component-name.ts`, `component-name.html`, `component-name.scss`
 - UI components (shared/ui) must each have their own folder: `button/`, `card/`, `rating-display/`, etc.
 - All components use OnPush change detection
 - API calls through services, never directly in components

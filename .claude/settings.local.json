@@ -22,7 +22,13 @@
       "Bash(mv restaurant-list.ts restaurant-list/)",
       "Bash(mv restaurant-list.html restaurant-list/)",
       "Bash(mv restaurant-list.scss restaurant-list/)",
-      "Bash(mv restaurant-detail.ts restaurant-detail/)"
+      "Bash(mv restaurant-detail.ts restaurant-detail/)",
+      "Bash(git commit -m ' *)",
+      "Bash(mkdir -p visit-form visit-list-item)",
+      "Bash(mv visit-form.ts visit-form/)",
+      "Bash(mv visit-form.html visit-form/)",
+      "Bash(mv visit-form.scss visit-form/)",
+      "Bash(mv visit-list-item.ts visit-list-item/)"
     ]
   }
 }
