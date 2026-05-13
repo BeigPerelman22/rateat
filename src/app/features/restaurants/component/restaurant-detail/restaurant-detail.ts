@@ -1,16 +1,17 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
-import { RestaurantStore } from '../store/restaurant.store';
-import { AuthStore } from '../../../core/auth';
+import { combineLatest, of } from 'rxjs';
+import { catchError, switchMap } from 'rxjs/operators';
+import { RestaurantStore } from '../../store/restaurant.store';
+import { AuthStore } from '../../../../core/auth';
 import {
   ButtonComponent,
   CardComponent,
   RatingDisplayComponent,
-} from '../../../shared/ui';
-import { VisitStore } from '../../visits/store/visit.store';
-import { VisitListItemComponent } from '../../visits/component/visit-list-item';
+} from '../../../../shared/ui';
+import { VisitStore } from '../../../visits/store/visit.store';
+import { VisitListItemComponent } from '../../../visits/component/visit-list-item/visit-list-item';
 
 @Component({
   selector: 'app-restaurant-detail',
@@ -35,8 +36,17 @@ export class RestaurantDetailComponent {
     toObservable(this.restaurantId).pipe(switchMap((id) => this.restaurantStore.watchOne(id))),
   );
 
+  protected visitsError = signal<string | null>(null);
+
   protected restaurantVisits = toSignal(
-    toObservable(this.restaurantId).pipe(switchMap((id) => this.visitStore.watchByRestaurant(id))),
+    combineLatest([toObservable(this.restaurantId), toObservable(this.authStore.uid)]).pipe(
+      switchMap(([id, uid]) => (uid ? this.visitStore.watchByRestaurant(id) : of([]))),
+      catchError((err) => {
+        console.error('[RestaurantDetail] visits query failed:', err);
+        this.visitsError.set('Could not load visits. Please try refreshing the page.');
+        return of([]);
+      }),
+    ),
     { initialValue: [] },
   );
 

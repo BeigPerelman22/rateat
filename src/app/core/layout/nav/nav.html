@@ -22,26 +22,50 @@
       </a>
 
       @if (authStore.appUser(); as currentUser) {
-        <button
-          type="button"
-          (click)="signOut()"
-          class="ml-2 flex items-center gap-2 rounded-md px-2 py-1 text-neutral-500 hover:bg-neutral-100"
-          [attr.aria-label]="'Sign out ' + currentUser.displayName"
-        >
-          @if (currentUser.photoURL) {
-            <img
-              [src]="currentUser.photoURL"
-              [alt]="currentUser.displayName"
-              class="h-7 w-7 rounded-full border border-neutral-200"
-            />
-          } @else {
-            <span
-              class="flex h-7 w-7 items-center justify-center rounded-full bg-brand-100 text-xs font-semibold text-brand-700"
+        <div class="relative ml-2">
+          <button
+            type="button"
+            (click)="toggleDropdown()"
+            class="flex items-center gap-2 rounded-md px-2 py-1 text-neutral-500 hover:bg-neutral-100"
+            [attr.aria-label]="'Account menu for ' + currentUser.displayName"
+            [attr.aria-expanded]="isDropdownOpen()"
+          >
+            @if (currentUser.photoURL && !imageLoadError()) {
+              <img
+                [src]="currentUser.photoURL"
+                [alt]="currentUser.displayName"
+                (error)="onImageError()"
+                class="h-7 w-7 rounded-full border border-neutral-200"
+              />
+            } @else {
+              <span
+                class="flex h-7 w-7 items-center justify-center rounded-full bg-brand-100 text-xs font-semibold text-brand-700"
+              >
+                {{ buildInitials(currentUser.displayName) }}
+              </span>
+            }
+          </button>
+
+          @if (isDropdownOpen()) {
+            <div
+              class="absolute right-0 mt-1 w-48 rounded-md border border-neutral-200 bg-white shadow-lg"
+              role="menu"
             >
-              {{ buildInitials(currentUser.displayName) }}
-            </span>
+              <div class="px-4 py-3 border-b border-neutral-100">
+                <p class="text-sm font-medium text-neutral-900">{{ currentUser.displayName }}</p>
+                <p class="text-xs text-neutral-500">{{ currentUser.email }}</p>
+              </div>
+              <button
+                type="button"
+                (click)="signOut()"
+                class="w-full px-4 py-2 text-left text-sm text-neutral-700 hover:bg-neutral-50"
+                role="menuitem"
+              >
+                Sign Out
+              </button>
+            </div>
           }
-        </button>
+        </div>
       }
     </nav>
   </div>

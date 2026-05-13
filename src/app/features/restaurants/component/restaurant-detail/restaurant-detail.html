@@ -50,7 +50,11 @@
         }
       </div>
 
-      @if (restaurantVisits().length === 0) {
+      @if (visitsError()) {
+        <div class="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-600">
+          {{ visitsError() }}
+        </div>
+      } @else if (restaurantVisits().length === 0) {
         <div class="rounded-xl border border-dashed border-neutral-300 bg-white p-8 text-center text-sm text-neutral-500">
           No visits recorded yet.
         </div>

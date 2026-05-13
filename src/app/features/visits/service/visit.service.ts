@@ -51,7 +51,7 @@ export class VisitService {
     if (!snap.exists()) throw new Error('Restaurant not found');
     const memberIds = (snap.data()['memberIds'] as string[]) ?? [ownerId];
 
-    const ref = await addDoc(this.col, {
+      const ref = await addDoc(this.col, {
       restaurantId,
       ownerId,
       memberIds,

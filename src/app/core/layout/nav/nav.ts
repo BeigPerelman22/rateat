@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
-import { AuthStore } from '../auth';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { AuthStore } from '../../auth';
 
 @Component({
   selector: 'app-nav',
@@ -11,9 +11,27 @@ import { AuthStore } from '../auth';
 })
 export class NavComponent {
   protected authStore = inject(AuthStore);
+  private router = inject(Router);
 
-  signOut() {
-    return this.authStore.signOut();
+  protected isDropdownOpen = signal(false);
+  protected imageLoadError = signal(false);
+
+  toggleDropdown() {
+    this.isDropdownOpen.update((open) => !open);
+  }
+
+  closeDropdown() {
+    this.isDropdownOpen.set(false);
+  }
+
+  onImageError() {
+    this.imageLoadError.set(true);
+  }
+
+  async signOut() {
+    this.isDropdownOpen.set(false);
+    await this.authStore.signOut();
+    await this.router.navigate(['/login']);
   }
 
   buildInitials(displayName: string): string {
