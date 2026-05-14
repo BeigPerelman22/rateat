@@ -3,9 +3,9 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { RatingStore } from '../../store/rating.store';
-import { CategoryStore } from '../../../categories/store/category.store';
+import { CategoryStore } from '../../../categories';
 import { ButtonComponent, RatingInputComponent } from '../../../../shared/ui';
-import { RatingParameter } from '../../../categories/model/category.model';
+import { RatingParameter } from '../../../categories';
 import { RatingFormValue } from '../../model/rating.model';
 
 @Component({
@@ -46,7 +46,7 @@ export class RatingFormComponent implements OnInit {
       this.categoryParameters.set(category.parameters);
       this.allowMultipleRatings.set(category.allowMultipleRatings);
       for (const param of category.parameters) {
-        this.form.addControl(param.id, this.formBuilder.nonNullable.control(0));
+        (this.form as any).addControl(param.id, this.formBuilder.nonNullable.control(0));
       }
     }
 
