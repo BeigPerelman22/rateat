@@ -108,6 +108,7 @@ All routes except `/login` require authentication.
 
 **Restaurant** — `ownerId`, `sharedWith[]`, `memberIds[]`, `name`, `cuisine`, `address`, `tags[]`, `latestRating`, `visitCount`
 
-**Visit** — `restaurantId`, `ownerId`, `memberIds[]`, `visitedAt`, `ratings { overall, food, service, ambiance, value }`, `notes`
+**Visit** — `restaurantId`, `ownerId`, `memberIds[]`, `visitedAt`, `overall`, `food`, `service`, `ambiance`, `value`, `notes`
 
-**User** — `uid`, `email`, `displayName`, `photoURL`, `partners[]`
+**User** — `uid`, `email`, `displayName`, `photoURL`, `partners: PartnerRef[]`
+where `PartnerRef = { uid, email, displayName }`
