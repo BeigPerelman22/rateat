@@ -1,5 +1,5 @@
 <div class="inline-flex items-center gap-0.5" role="radiogroup" [attr.aria-label]="label()">
-  @for (starNumber of starOptions; track starNumber) {
+  @for (starNumber of starOptions(); track starNumber) {
     <button
       type="button"
       role="radio"

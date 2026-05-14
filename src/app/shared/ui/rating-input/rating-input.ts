@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   forwardRef,
   input,
   signal,
@@ -22,7 +23,9 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class RatingInputComponent implements ControlValueAccessor {
   readonly label = input<string>('Rating');
-  readonly starOptions = [1, 2, 3, 4, 5] as const;
+  readonly max = input<number>(5);
+
+  readonly starOptions = computed(() => Array.from({ length: this.max() }, (_, i) => i + 1));
 
   readonly selectedValue = signal<number>(0);
   readonly hoveredValue = signal<number>(0);
@@ -41,7 +44,8 @@ export class RatingInputComponent implements ControlValueAccessor {
   }
 
   writeValue(incomingValue: number | null): void {
-    this.selectedValue.set(incomingValue ?? 0);
+    const clampedValue = Math.min(incomingValue ?? 0, this.max());
+    this.selectedValue.set(clampedValue);
   }
   registerOnChange(changeHandler: (newValue: number) => void): void {
     this.notifyValueChange = changeHandler;

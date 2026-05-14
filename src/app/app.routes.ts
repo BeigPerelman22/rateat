@@ -29,6 +29,21 @@ export const APP_ROUTES: Routes = [
         loadChildren: () =>
           import('./features/partners').then((m) => m.PARTNER_ROUTES),
       },
+      {
+        path: 'categories',
+        loadChildren: () =>
+          import('./features/categories').then((m) => m.CATEGORY_ROUTES),
+      },
+      {
+        path: 'categories/:categoryId/items',
+        loadChildren: () =>
+          import('./features/items').then((m) => m.ITEM_ROUTES),
+      },
+      {
+        path: 'categories/:categoryId/items/:itemId/ratings',
+        loadChildren: () =>
+          import('./features/ratings').then((m) => m.RATING_ROUTES),
+      },
     ],
   },
   { path: '**', redirectTo: '' },
