@@ -10,80 +10,24 @@ Angular 21 application with standalone components, Signal-based state.
 - **Package Manager**: npm
 
 ## Common Commands
-```bash
-npm start        # Start dev server (ng serve)
-npm run build    # Production build
-npm run watch    # Dev build with watch mode
-```
+See @package.json for root-level scripts.
 
 ## Project Structure
 
 ```
-src/
-  app/
-    app.ts                    # Root component
-    app.config.ts             # App configuration
-    app.routes.ts             # App routing
-    core/                     # Core/singleton services and layout
-      auth/                   # Authentication
-        auth.guard.ts
-        auth.service.ts
-        auth.store.ts
-        user.model.ts
-        index.ts
-      layout/                 # App shell (each component in its own folder)
-        nav/                  # Navigation component
-          nav.ts, nav.html, nav.scss
-        shell/                # Shell component
-          shell.ts, shell.html, shell.scss
-        index.ts              # Public API barrel
-    features/                 # Feature modules (restaurants, visits, partners, etc.)
-      restaurants/
-        component/            # Feature components (each in its own folder, no barrels)
-          restaurant-list/
-            restaurant-list.ts, restaurant-list.html, restaurant-list.scss
-          restaurant-detail/
-            restaurant-detail.ts, restaurant-detail.html, restaurant-detail.scss
-          restaurant-form/
-            restaurant-form.ts, restaurant-form.html, restaurant-form.scss
-        service/restaurant.service.ts
-        store/restaurant.store.ts
-        model/restaurant.model.ts
-        routes.ts
-        index.ts              # Public API barrel
-      visits/
-        component/            # Each component in its own folder, no barrels
-          visit-form/
-            visit-form.ts, visit-form.html, visit-form.scss
-          visit-list-item/
-            visit-list-item.ts, visit-list-item.html, visit-list-item.scss
-        service/visit.service.ts
-        store/visit.store.ts
-        model/visit.model.ts
-        routes.ts
-        index.ts              # Public API barrel
-    shared/
-      ui/                     # Shared UI components
-        button/               # Each component in its own folder, no barrels
-          button.ts, button.html, button.scss
-        card/
-          card.ts, card.html, card.scss
-        rating-display/
-          rating-display.ts, rating-display.html, rating-display.scss
-        rating-input/
-          rating-input.ts, rating-input.html, rating-input.scss
-        index.ts              # Public API barrel (direct imports, no nested barrels)
-  main.ts                     # Bootstrap entry point
-  styles.scss                 # Global styles
-  index.html                  # HTML shell
-public/                       # Static assets
+src/app/
+  core/          ← Singleton services, guards, interceptors
+  features/      ← Feature-sliced modules (partners/restaurants  )
+  shared/        ← Reusable components, pipes, directives
+  models/        ← TypeScript interfaces mirroring backend API types
 ```
 
 ## Conventions
-- **Folder Organization**: Each folder should contain max 6-7 files
-- **Component Subfolders**: Always create individual subfolders for each component if a folder contains more than one component (e.g., if a folder has visit-form and visit-list-item, create `visit-form/` and `visit-list-item/` subfolders)
+- Folder Organization: Each folder should contain max 6-7 files
+- Component Subfolders: Always create individual subfolders for each component if a folder contains more than one component (e.g., if a folder has visit-form and visit-list-item, create `visit-form/` and `visit-list-item/` subfolders)
 - Components use the Angular 21 naming convention (`app.ts` instead of `app.component.ts`)
-- Styles written in SCSS
+- Components are dumb by default - smart logic belongs in services or stores
+- CSS: Tailwind utility classes only - no custom CSS unless absolutely necessary
 - Feature-based folder structure: `feature-name/{component,service,store,model,routes}`
 - Each component in separate subfolders with individual files: `component-name.ts`, `component-name.html`, `component-name.scss`
 - UI components (shared/ui) must each have their own folder: `button/`, `card/`, `rating-display/`, etc.
