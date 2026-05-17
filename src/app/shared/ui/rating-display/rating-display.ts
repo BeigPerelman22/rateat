@@ -9,6 +9,7 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
 export class RatingDisplayComponent {
   readonly value = input.required<number | null>();
   readonly showMax = input<boolean>(false);
+  readonly max = input<number>(5);
 
   protected formattedRating = computed(() => {
     const ratingValue = this.value();
@@ -18,6 +19,6 @@ export class RatingDisplayComponent {
 
   protected accessibilityLabel = computed(() => {
     const ratingValue = this.value();
-    return ratingValue == null ? 'No rating' : `${ratingValue} out of 5`;
+    return ratingValue == null ? 'No rating' : `${ratingValue} out of ${this.max()}`;
   });
 }

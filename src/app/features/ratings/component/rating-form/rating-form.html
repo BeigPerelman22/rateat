@@ -1,0 +1,72 @@
+<div class="space-y-6">
+  <header>
+    <h1 class="text-2xl font-semibold tracking-tight">
+      {{ isEditing() ? 'Edit rating' : 'New rating' }}
+    </h1>
+  </header>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" class="space-y-5">
+    @if (allowMultipleRatings()) {
+      <div>
+        <label class="block text-sm font-medium text-neutral-700">Date</label>
+        <input
+          type="date"
+          formControlName="ratedAt"
+          class="mt-1 w-full rounded-lg border border-neutral-200 bg-white px-3 py-2 text-sm focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200 sm:w-64"
+        />
+      </div>
+    }
+
+    <div class="rounded-xl border border-neutral-200 bg-white p-4">
+      <div class="flex items-center justify-between">
+        <span class="text-sm font-medium text-neutral-700">Overall</span>
+        <app-rating-input
+          formControlName="overall"
+          label="Overall rating"
+          [max]="ratingMethod() === '5star' ? 5 : 10"
+          [ratingMethod]="ratingMethod()"
+        />
+      </div>
+      @if (categoryParameters().length > 0) {
+        <div class="mt-3 grid gap-3 border-t border-neutral-100 pt-3 sm:grid-cols-2">
+          @for (param of categoryParameters(); track param.id) {
+            <div class="flex items-center justify-between">
+              <span class="text-sm text-neutral-600">{{ param.label }}</span>
+              <app-rating-input
+                [formControlName]="param.id"
+                [label]="param.label + ' rating'"
+                [max]="param.scale"
+                [ratingMethod]="param.scale === 5 ? '5star' : '10point'"
+              />
+            </div>
+          }
+        </div>
+      }
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-neutral-700">Review / notes</label>
+      <textarea
+        formControlName="review"
+        rows="4"
+        class="mt-1 w-full rounded-lg border border-neutral-200 bg-white px-3 py-2 text-sm focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200"
+        placeholder="What did you think?"
+      ></textarea>
+    </div>
+
+    @if (saveError()) {
+      <p class="text-sm text-red-600">{{ saveError() }}</p>
+    }
+
+    <div class="flex gap-2 pt-2">
+      <app-button type="submit" [disabled]="form.invalid || isSaving()">
+        @if (isSaving()) { Saving… } @else { Save rating }
+      </app-button>
+      <app-button variant="ghost" (click)="cancel()">Cancel</app-button>
+      @if (isEditing()) {
+        <span class="ml-auto"></span>
+        <app-button variant="danger" (click)="remove()">Delete</app-button>
+      }
+    </div>
+  </form>
+</div>

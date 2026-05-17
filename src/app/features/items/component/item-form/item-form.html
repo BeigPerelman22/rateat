@@ -1,0 +1,78 @@
+<div class="space-y-6">
+  <header>
+    <h1 class="text-2xl font-semibold tracking-tight">
+      {{ isEditing() ? 'Edit item' : 'New item' }}
+    </h1>
+  </header>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" class="space-y-4">
+    <div>
+      <label class="block text-sm font-medium text-neutral-700">Name</label>
+      <input
+        formControlName="name"
+        class="mt-1 w-full rounded-lg border border-neutral-200 bg-white px-3 py-2 text-sm focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200"
+        placeholder="Item name"
+      />
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-neutral-700">Tags</label>
+      <input
+        [(ngModel)]="tagsInput"
+        [ngModelOptions]="{ standalone: true }"
+        class="mt-1 w-full rounded-lg border border-neutral-200 bg-white px-3 py-2 text-sm focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200"
+        placeholder="crispy, spicy, seasonal"
+      />
+      <p class="mt-1 text-xs text-neutral-500">Separate tags with commas.</p>
+    </div>
+
+    @if (partnerStore.list().length > 0) {
+      <fieldset>
+        <legend class="block text-sm font-medium text-neutral-700">Share with</legend>
+        <div class="mt-2 flex flex-wrap gap-2">
+          @for (partner of partnerStore.list(); track partner.uid) {
+            <label
+              class="inline-flex cursor-pointer items-center gap-2 rounded-full border px-3 py-1 text-sm transition"
+              [class.border-brand-500]="selectedPartnerIds().has(partner.uid)"
+              [class.bg-brand-50]="selectedPartnerIds().has(partner.uid)"
+              [class.text-brand-700]="selectedPartnerIds().has(partner.uid)"
+              [class.border-neutral-200]="!selectedPartnerIds().has(partner.uid)"
+              [class.text-neutral-700]="!selectedPartnerIds().has(partner.uid)"
+            >
+              <input
+                type="checkbox"
+                class="hidden"
+                [checked]="selectedPartnerIds().has(partner.uid)"
+                (change)="togglePartner(partner.uid)"
+              />
+              <span>{{ partner.displayName }}</span>
+            </label>
+          }
+        </div>
+      </fieldset>
+    } @else {
+      <p class="text-xs text-neutral-500">
+        <a routerLink="/partners" class="text-brand-600 underline">Add a partner</a>
+        to share items.
+      </p>
+    }
+
+    @if (saveError()) {
+      <div class="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-600">
+        {{ saveError() }}
+      </div>
+    }
+
+    <div class="flex gap-2 pt-2">
+      <app-button type="submit" [disabled]="form.invalid || isSaving()">
+        @if (isSaving()) { Saving… } @else { Save }
+      </app-button>
+      <app-button variant="ghost" [routerLink]="cancelNavigationTarget()">Cancel</app-button>
+
+      @if (isEditing()) {
+        <span class="ml-auto"></span>
+        <app-button variant="danger" (click)="remove()">Delete</app-button>
+      }
+    </div>
+  </form>
+</div>

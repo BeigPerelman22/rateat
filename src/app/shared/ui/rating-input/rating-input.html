@@ -1,19 +1,49 @@
-<div class="inline-flex items-center gap-0.5" role="radiogroup" [attr.aria-label]="label()">
-  @for (starNumber of starOptions; track starNumber) {
-    <button
-      type="button"
-      role="radio"
-      [attr.aria-label]="starNumber + ' stars'"
-      [attr.aria-checked]="starNumber === selectedValue()"
-      [disabled]="isDisabled()"
-      (click)="selectRating(starNumber)"
-      (mouseenter)="hoveredValue.set(starNumber)"
-      (mouseleave)="hoveredValue.set(0)"
-      class="p-0.5 text-2xl leading-none transition disabled:cursor-not-allowed"
-      [class.text-amber-400]="starNumber <= displayedValue()"
-      [class.text-neutral-300]="starNumber > displayedValue()"
-    >
-      ★
-    </button>
-  }
-</div>
+@if (ratingMethod() === '5star') {
+  <div
+    class="inline-flex items-center gap-0.5"
+    role="radiogroup"
+    [attr.aria-label]="label()"
+    (mouseleave)="hoveredValue.set(0)"
+  >
+    @for (star of starOptions(); track star) {
+      <span class="relative inline-block w-7 h-7 select-none">
+        <span class="absolute inset-0 flex items-center justify-center text-2xl leading-none text-neutral-300">★</span>
+        @if (displayedValue() >= star) {
+          <span class="absolute inset-0 flex items-center justify-center text-2xl leading-none text-amber-400">★</span>
+        } @else if (displayedValue() >= star - 0.5) {
+          <span class="absolute inset-0 flex items-center justify-center text-2xl leading-none text-amber-400" style="clip-path: inset(0 50% 0 0)">★</span>
+        }
+        <button
+          type="button"
+          class="absolute inset-y-0 left-0 w-1/2 disabled:cursor-not-allowed"
+          [attr.aria-label]="(star - 0.5) + ' out of ' + max() + ' stars'"
+          [attr.aria-checked]="(star - 0.5) === selectedValue()"
+          [disabled]="isDisabled()"
+          (click)="selectRating(star - 0.5)"
+          (mouseenter)="hoveredValue.set(star - 0.5)"
+        ></button>
+        <button
+          type="button"
+          class="absolute inset-y-0 right-0 w-1/2 disabled:cursor-not-allowed"
+          [attr.aria-label]="star + ' out of ' + max() + ' stars'"
+          [attr.aria-checked]="star === selectedValue()"
+          [disabled]="isDisabled()"
+          (click)="selectRating(star)"
+          (mouseenter)="hoveredValue.set(star)"
+        ></button>
+      </span>
+    }
+  </div>
+} @else {
+  <input
+    type="number"
+    [value]="selectedValue()"
+    [min]="0"
+    [max]="max()"
+    [step]="0.1"
+    [disabled]="isDisabled()"
+    (input)="selectRatingFromInput($any($event.target).value)"
+    (blur)="notifyTouched()"
+    class="w-20 rounded border border-neutral-300 px-2 py-1 text-center text-sm disabled:cursor-not-allowed disabled:bg-neutral-100"
+  />
+}
