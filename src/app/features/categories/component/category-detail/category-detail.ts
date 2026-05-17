@@ -43,4 +43,9 @@ export class CategoryDetailComponent {
     const currentCategory = this.categoryData();
     return !!currentCategory && currentCategory.ownerId === this.authStore.uid();
   });
+
+  protected maxRating = computed(() => {
+    const category = this.categoryData();
+    return category?.ratingMethod === '5star' ? 5 : 10;
+  });
 }

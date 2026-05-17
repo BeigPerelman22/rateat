@@ -25,6 +25,7 @@ export class CategoryFormComponent implements OnInit {
     name: ['', [Validators.required, Validators.minLength(1)]],
   });
 
+  protected ratingMethod = signal<'5star' | '10point'>('5star');
   protected parameters = signal<RatingParameter[]>([]);
   protected allowMultipleRatings = signal<boolean>(false);
   protected selectedPartnerIds = signal<Set<string>>(new Set());
@@ -41,6 +42,7 @@ export class CategoryFormComponent implements OnInit {
     const existing = await firstValueFrom(this.categoryStore.watchOne(categoryId));
     if (existing) {
       this.form.patchValue({ name: existing.name });
+      this.ratingMethod.set(existing.ratingMethod ?? '5star');
       this.parameters.set(existing.parameters);
       this.allowMultipleRatings.set(existing.allowMultipleRatings);
       this.selectedPartnerIds.set(new Set(existing.sharedWith));
@@ -61,7 +63,8 @@ export class CategoryFormComponent implements OnInit {
     try {
       const categoryId = this.editingCategoryId();
       const formData = {
-        ...this.form.getRawValue(),
+        name: this.form.getRawValue().name,
+        ratingMethod: this.ratingMethod(),
         parameters: this.parameters(),
         allowMultipleRatings: this.allowMultipleRatings(),
         sharedWith: Array.from(this.selectedPartnerIds()),

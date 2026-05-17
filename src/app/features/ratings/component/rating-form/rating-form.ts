@@ -1,11 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, OnInit, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { RatingStore } from '../../store/rating.store';
-import { CategoryStore } from '../../../categories';
+import { CategoryStore, RatingParameter } from '../../../categories';
 import { ButtonComponent, RatingInputComponent } from '../../../../shared/ui';
-import { RatingParameter } from '../../../categories';
 import { RatingFormValue } from '../../model/rating.model';
 
 @Component({
@@ -20,7 +19,6 @@ export class RatingFormComponent implements OnInit {
   private ratingStore = inject(RatingStore);
   private categoryStore = inject(CategoryStore);
   private router = inject(Router);
-  private route = inject(ActivatedRoute);
 
   readonly itemId = input.required<string>();
   readonly categoryId = input.required<string>();
@@ -28,7 +26,7 @@ export class RatingFormComponent implements OnInit {
 
   protected form = this.formBuilder.nonNullable.group({
     ratedAt: [this.todayAsInputDate(), Validators.required],
-    overall: [0, [Validators.required, Validators.min(1)]],
+    overall: [0, [Validators.required, Validators.min(0)]],
     review: [''],
   });
 
@@ -37,6 +35,7 @@ export class RatingFormComponent implements OnInit {
   protected editingRatingId = signal<string | null>(null);
   protected categoryParameters = signal<RatingParameter[]>([]);
   protected allowMultipleRatings = signal<boolean>(false);
+  protected ratingMethod = signal<'5star' | '10point'>('5star');
 
   protected isEditing = () => this.editingRatingId() !== null;
 
@@ -45,6 +44,7 @@ export class RatingFormComponent implements OnInit {
     if (category) {
       this.categoryParameters.set(category.parameters);
       this.allowMultipleRatings.set(category.allowMultipleRatings);
+      this.ratingMethod.set(category.ratingMethod ?? '5star');
       for (const param of category.parameters) {
         (this.form as any).addControl(param.id, this.formBuilder.nonNullable.control(0));
       }
@@ -78,7 +78,8 @@ export class RatingFormComponent implements OnInit {
     const formValues = this.form.getRawValue();
     const parameterValues: Record<string, number> = {};
     for (const param of this.categoryParameters()) {
-      parameterValues[param.id] = (formValues as Record<string, unknown>)[param.id] as number ?? 0;
+      parameterValues[param.id] =
+        ((formValues as Record<string, unknown>)[param.id] as number) ?? 0;
     }
 
     const ratingFormData: RatingFormValue = {

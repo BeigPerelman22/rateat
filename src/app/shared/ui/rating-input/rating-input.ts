@@ -24,6 +24,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 export class RatingInputComponent implements ControlValueAccessor {
   readonly label = input<string>('Rating');
   readonly max = input<number>(5);
+  readonly ratingMethod = input<'5star' | '10point'>('5star');
 
   readonly starOptions = computed(() => Array.from({ length: this.max() }, (_, i) => i + 1));
 
@@ -34,13 +35,19 @@ export class RatingInputComponent implements ControlValueAccessor {
   protected displayedValue = () => this.hoveredValue() || this.selectedValue();
 
   private notifyValueChange: (newValue: number) => void = () => {};
-  private notifyTouched: () => void = () => {};
+  protected notifyTouched: () => void = () => {};
 
-  selectRating(starNumber: number) {
+  selectRating(value: number) {
     if (this.isDisabled()) return;
-    this.selectedValue.set(starNumber);
-    this.notifyValueChange(starNumber);
+    this.selectedValue.set(value);
+    this.notifyValueChange(value);
     this.notifyTouched();
+  }
+
+  selectRatingFromInput(rawValue: string) {
+    const parsed = parseFloat(rawValue);
+    const clamped = isNaN(parsed) ? 0 : Math.min(Math.max(parsed, 0), this.max());
+    this.selectRating(clamped);
   }
 
   writeValue(incomingValue: number | null): void {

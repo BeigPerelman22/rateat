@@ -23,10 +23,6 @@
           <div class="text-xs uppercase tracking-wide text-neutral-500">Items</div>
           <div class="mt-1 text-2xl font-semibold tabular-nums text-neutral-900">{{ category.itemCount }}</div>
         </div>
-        <div class="text-right">
-          <div class="text-xs uppercase tracking-wide text-neutral-500">Parameters</div>
-          <div class="mt-1 text-2xl font-semibold tabular-nums text-neutral-900">{{ category.parameters.length }}</div>
-        </div>
       </div>
     </app-card>
 
@@ -63,7 +59,7 @@
                   </div>
                 </div>
                 <div class="ml-4 flex-shrink-0">
-                  <app-rating-display [value]="item.latestRating" />
+                  <app-rating-display [value]="item.latestRating" [max]="maxRating()" />
                 </div>
               </a>
             </li>

@@ -32,7 +32,17 @@
       "Bash(git add *)",
       "mcp__Claude_Preview__preview_start",
       "Bash(curl -s http://localhost:4200)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(npm start *)",
+      "mcp__Claude_in_Chrome__navigate",
+      "mcp__Claude_in_Chrome__computer",
+      "mcp__Claude_in_Chrome__read_console_messages",
+      "Bash(taskkill /PID 26000 /F)",
+      "PowerShell(Stop-Process -Id 26000 -Force)",
+      "PowerShell($pid = \\(Get-NetTCPConnection -LocalPort 4200 -ErrorAction SilentlyContinue\\).OwningProcess | Select-Object -First 1; if \\($pid\\) { Stop-Process -Id $pid -Force })",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "mcp__Claude_in_Chrome__browser_batch",
+      "mcp__Claude_in_Chrome__switch_browser"
     ]
   }
 }

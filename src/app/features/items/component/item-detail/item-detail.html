@@ -26,7 +26,7 @@
         <div>
           <div class="text-xs uppercase tracking-wide text-neutral-500">Latest rating</div>
           <div class="mt-1 text-2xl">
-            <app-rating-display [value]="item.latestRating" [showMax]="true" />
+            <app-rating-display [value]="item.latestRating" [showMax]="true" [max]="maxRating()" />
           </div>
         </div>
         <div class="text-right">

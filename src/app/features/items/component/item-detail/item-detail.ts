@@ -65,4 +65,9 @@ export class ItemDetailComponent {
     const currentItem = this.itemData();
     return !!currentItem && this.itemStore.isOwner(currentItem);
   });
+
+  protected maxRating = computed(() => {
+    const category = this.categoryData();
+    return category?.ratingMethod === '5star' ? 5 : 10;
+  });
 }
